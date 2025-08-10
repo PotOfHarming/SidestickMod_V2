@@ -7,8 +7,18 @@ import pot.potionofharming.SidestickMod;
 public class Walking {
     private static boolean fbStarted = false;
     private static boolean lrStarted = false;
-    public static void move(MinecraftClient client, float fb, float lr) {
+    private static boolean jsStarted = false;
+    public static void move(MinecraftClient client, float fb, float lr, float js) {
         if (client.player==null) return;
+        if (js<-0.5 || js>0.5 || jsStarted) {
+            jsStarted = true;
+            try {
+                client.execute(() -> KeyBinding.setKeyPressed(client.options.jumpKey.getDefaultKey(), js>0.5));
+                client.execute(() -> KeyBinding.setKeyPressed(client.options.sneakKey.getDefaultKey(), js<-0.5));
+            } catch (Exception e) {
+                SidestickMod.LOGGER.error(e.toString());
+            }
+        }
         if (fb!=0||fbStarted) {
             fbStarted = fb!=0;
             try {

@@ -12,6 +12,9 @@ import java.nio.FloatBuffer;
 
 public class Loop {
     private static void initLoop() {
+
+        // 6 is item up, 7 is item down
+
         while (!SidestickMod.breakLoop) {
             MinecraftClient client = MinecraftClient.getInstance();
             FloatBuffer aFB = GLFW.glfwGetJoystickAxes(StickSettings.stick);
@@ -28,7 +31,7 @@ public class Loop {
 
             float[] floatAxes = new float[aFB.limit()]; /* LEFTRIGHT, UPDOWN; RUDDER, THRUSTLEVER */
             for (int a = 0; a < aFB.limit(); a++) {
-                if (aFB.get(a) < .25f && aFB.get(a) > -.25f) floatAxes[a] = 0f;
+                if (aFB.get(a) < .15f && aFB.get(a) > -.15f) floatAxes[a] = 0f;
                 else floatAxes[a] = aFB.get(a) * 10;
             }
             byte[] byteAxes = new byte[aBB.limit()];
@@ -53,8 +56,9 @@ public class Loop {
 
             float fb = (float) (Byte.toUnsignedInt(byteAxes[17]) - Byte.toUnsignedInt(byteAxes[19]));
             float lr = (float) (Byte.toUnsignedInt(byteAxes[18]) - Byte.toUnsignedInt(byteAxes[20]));
+            float js = floatAxes[2];
             if (StickSettings.debug) client.player.sendMessage(Text.literal("Updating movement..."), false);
-            Walking.move(client, fb, lr);
+            Walking.move(client, fb, lr, js);
             if (StickSettings.debug) client.player.sendMessage(Text.literal("Updated movement!"), false);
             if (StickSettings.debug) client.player.sendMessage(Text.literal("Updating clicks..."), false);
             MouseClicks.press(client, byteAxes[0] == 1, byteAxes[1] == 1);

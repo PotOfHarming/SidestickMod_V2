@@ -3,15 +3,12 @@
 	"id": "sidestickmod",
 	"version": "${version}",
 	"name": "SidestickMod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "This minecraft mod adds the Airbus sidestick into minecraft!",
 	"authors": [
-		"Me!"
+		"PotionOfHarming"
 	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
+	"contact": { },
+	"license": "GPL-3.0-or-later",
 	"icon": "assets/sidestickmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -20,6 +17,9 @@
 		],
 		"fabric-datagen": [
 			"pot.potionofharming.SidestickModDataGenerator"
+		],
+		"modmenu": [
+			"pot.potionofharming.config.ModMenuIntergration"
 		]
 	},
 	"mixins": [
