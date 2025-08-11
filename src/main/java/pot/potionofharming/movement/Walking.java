@@ -10,8 +10,8 @@ public class Walking {
     private static boolean jsStarted = false;
     public static void move(MinecraftClient client, float fb, float lr, float js) {
         if (client.player==null) return;
-        if (js<-0.5 || js>0.5 || jsStarted) {
-            jsStarted = js>.5||js<-.5;
+        if (js<-2.5 || js>2.5 || jsStarted) {
+            jsStarted = js>2.5||js<-2.5;
             try {
                 client.execute(() -> KeyBinding.setKeyPressed(client.options.jumpKey.getDefaultKey(), js>0.5));
                 client.execute(() -> KeyBinding.setKeyPressed(client.options.sneakKey.getDefaultKey(), js<-0.5));
