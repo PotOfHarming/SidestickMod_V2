@@ -26,6 +26,15 @@ public class CreateConfigScreen {
                 })
                 .build()); // Builds the option entry for cloth config
 
+        general.addEntry(entryBuilder.startIntSlider(Text.translatable("js_sensitivity.sidestickmod.config"), ((int)(StickSettings.jsSensitivty*10)), 1, 100)
+                .setDefaultValue(((int)(StickSettings.jsSensitivty*10))) // Recommended: Used when user click "Reset"
+                .setTooltip(Text.translatable("js_sensitivity_tooltip.sidestickmod.config")) // Optional: Shown when the user hover over this option
+                .setSaveConsumer(newVal -> {
+                    StickSettings.jsSensitivty = ((double)newVal)/10;
+                    Configuration.saveConfig();
+                })
+                .build()); // Builds the option entry for cloth config
+
         general.addEntry(entryBuilder.startLongSlider(Text.translatable("attack_cooldown.sidestickmod.config"), StickSettings.attack_cooldown, 10, 1000)
                 .setDefaultValue(StickSettings.attack_cooldown) // Recommended: Used when user click "Reset"
                 .setTooltip(Text.translatable("attack_cooldown_tooltip.sidestickmod.config")) // Optional: Shown when the user hover over this option

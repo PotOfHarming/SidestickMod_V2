@@ -16,6 +16,7 @@ public class Configuration {
     // Helper data holder for saving/loading
     private static class StickSettingsData {
         int sensitivity = StickSettings.sensitivity;
+        double jsSensitivity = StickSettings.jsSensitivty;
         long attack_cooldown = StickSettings.attack_cooldown;
         int stick = StickSettings.stick;
         boolean rightHanded = StickSettings.rightHanded;
@@ -45,6 +46,7 @@ public class Configuration {
                 StickSettingsData data = GSON.fromJson(reader, StickSettingsData.class);
                 if (data != null) {
                     StickSettings.sensitivity = data.sensitivity;
+                    StickSettings.jsSensitivty = data.jsSensitivity;
                     StickSettings.attack_cooldown = data.attack_cooldown;
                     StickSettings.stick = data.stick;
                     StickSettings.rightHanded = data.rightHanded;

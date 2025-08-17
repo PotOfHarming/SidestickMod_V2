@@ -2,6 +2,8 @@
   "title.sidestickmod.config": "SidestickMod V2 configuration screen",
   "sensitivity.sidestickmod.config": "Sensitivity",
   "sensitivity_tooltip.sidestickmod.config": "This changes how fast your pitch and yaw change",
+  "js_sensitivity.sidestickmod.config": "Jump & Sneak sensitivity",
+  "js_sensitivity_tooltip.sidestickmod.config": "This changes whether you have to partly twist the sidestick or fully to jump/sneak",
   "attack_cooldown.sidestickmod.config": "Attack cooldown",
   "attack_cooldown_tooltip.sidestickmod.config": "This changes how fast you can left click while holding your attack key on the sidestick",
   "debug_mode.sidestickmod.config": "Toggle debug mode",

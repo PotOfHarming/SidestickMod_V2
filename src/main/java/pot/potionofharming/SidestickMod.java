@@ -3,6 +3,8 @@ package pot.potionofharming;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.MinecraftVersion;
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import pot.potionofharming.movement.Loop;
 public class SidestickMod implements ModInitializer {
 	public static final String MOD_ID = "sidestickmod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String MCVERSION = FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString();
 
 	public static boolean breakLoop = true;
 
@@ -24,6 +27,7 @@ public class SidestickMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Minecraft version: " + MCVERSION);
 		Configuration.loadConfig();
 
 		if (!initGLFW()) return;

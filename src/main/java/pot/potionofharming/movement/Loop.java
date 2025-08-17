@@ -19,7 +19,7 @@ public class Loop {
             MinecraftClient client = MinecraftClient.getInstance();
             FloatBuffer aFB = GLFW.glfwGetJoystickAxes(StickSettings.stick);
             ByteBuffer aBB = GLFW.glfwGetJoystickButtons(StickSettings.stick);
-            if (client.player == null || aFB == null) {
+            if (client.player == null || aFB == null || client.isPaused()) {
                 //                if (StickSettings.debug) SidestickMod.LOGGER.info("NO CLIENT PLAYER FOUND");
                 try {
                     Thread.sleep(250);
@@ -50,7 +50,11 @@ public class Loop {
             if (floatAxes[0] != 0 || floatAxes[1] != 0) {
                 if (StickSettings.debug)
                     client.player.sendMessage(Text.literal("Updating pitch..."), false);
-                PitchYaw.updatePY(client, -floatAxes[1], floatAxes[0]);
+                try {
+                    PitchYaw.updatePY(client, -floatAxes[1], floatAxes[0]);
+                } catch (Exception e) {
+                    SidestickMod.LOGGER.error(e.toString());
+                }
                 if (StickSettings.debug) client.player.sendMessage(Text.literal("Updated pitch!"), false);
             }
 

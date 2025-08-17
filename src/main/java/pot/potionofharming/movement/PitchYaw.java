@@ -7,6 +7,7 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import pot.potionofharming.config.StickSettings;
 import pot.potionofharming.utils.Utils;
 
+
 public class PitchYaw {
     public static void updatePY(MinecraftClient client, float p, float y) {
         if (client.player==null) return;
@@ -28,7 +29,7 @@ public class PitchYaw {
 
         player.setPitch(newPitch);
         player.setYaw(newYaw);
-        if (client.getNetworkHandler()!=null&&additionP!=0&&additionY!=0) {
+        if (client.getNetworkHandler()!=null && (additionP!=0||additionY!=0)) {
             client.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(player.getYaw(), player.getPitch(), player.isOnGround(), player.horizontalCollision));
         }
     }

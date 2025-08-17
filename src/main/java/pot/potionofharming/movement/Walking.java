@@ -3,6 +3,7 @@ package pot.potionofharming.movement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import pot.potionofharming.SidestickMod;
+import pot.potionofharming.config.StickSettings;
 
 public class Walking {
     private static boolean fbStarted = false;
@@ -10,11 +11,16 @@ public class Walking {
     private static boolean jsStarted = false;
     public static void move(MinecraftClient client, float fb, float lr, float js) {
         if (client.player==null) return;
-        if (js<-2.5 || js>2.5 || jsStarted) {
-            jsStarted = js>2.5||js<-2.5;
+        int jsInt;
+        if (js>StickSettings.jsSensitivty) jsInt=1;
+        else if (js<(-StickSettings.jsSensitivty)) jsInt=-1;
+        else jsInt=0;
+
+        if (js!=0||jsStarted) {
+            jsStarted = jsInt!=0;
             try {
-                client.execute(() -> KeyBinding.setKeyPressed(client.options.jumpKey.getDefaultKey(), js>0.5));
-                client.execute(() -> KeyBinding.setKeyPressed(client.options.sneakKey.getDefaultKey(), js<-0.5));
+                client.execute(() -> KeyBinding.setKeyPressed(client.options.jumpKey.getDefaultKey(), jsInt==1));
+                client.execute(() -> KeyBinding.setKeyPressed(client.options.sneakKey.getDefaultKey(), jsInt==-1));
             } catch (Exception e) {
                 SidestickMod.LOGGER.error(e.toString());
             }
